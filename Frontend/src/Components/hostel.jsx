@@ -1,7 +1,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import Messenger from "./Messenger";
+import Messenger from "./messenger";
 import { authFetch, getCookie } from "../utils/authFetch";
 import { API_BASE_URL } from "../utils/apiConfig";
 

@@ -1,0 +1,67 @@
+:root{
+   
+  --bg--body:rgb(255, 255, 255);
+ 
+  --bg-main:#ffffff;
+  --bg-card:#ede9e9;
+  --bg-soft:#efefef;
+
+
+
+  
+  --text-main:#000000;
+  --text-light:#000000;
+
+  /* borders */
+  --border-color:#000000;
+
+  /* brand colors */
+  --primary:#6c0000;
+  --secondary:#6c0000;
+
+  /* analytics colors */
+  --success:#2af973;
+  --warning:#F59E0B;
+  --info:#3B82F6;
+  --danger:#f80707;
+  --highlight:#59569e;
+
+}
+
+[data-theme="dark"]{
+
+  --bg--body:rgb(65, 64, 64);
+
+  --bg-main:#000000;
+  --bg-card:#1e1e1e;
+  --bg-soft:#2a2a2a;
+
+  --text-main:#ffffff;
+  --text-light:#ffffff;
+
+  --border-color:#ffffff;
+
+  --primary:#6c0000;
+  --secondary:#6c0000;
+
+  
+}
+
+[data-theme="blue"]{
+  --bg--body:rgb(156, 166, 181);
+
+  --bg-main:#eef4ff;
+  --bg-card:#ffffff;
+  --bg-soft:#f5f8ff;
+
+  --text-main:#000000;
+  --text-light:#000000;
+
+  --border-color:#c5cae9;
+
+  --primary:#1e40af;
+  --secondary:#1e40af;
+
+ 
+
+}

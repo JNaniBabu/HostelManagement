@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Messenger from "./messenger";
+import Messenger from "./Messenger";
 import { authFetch, getCookie } from "../utils/authFetch";
 
 function AddRooms() {

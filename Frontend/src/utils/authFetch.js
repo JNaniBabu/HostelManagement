@@ -1,3 +1,20 @@
+import { buildApiUrl } from "./apiConfig";
+
+
+async function refreshTenantAccessToken() {
+  const csrftoken = getCookie("csrftoken");
+
+  const response = await fetch(buildApiUrl("/tenant/token/refresh/"), {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "X-CSRFToken": csrftoken,
+    },
+  });
+
+  return response.ok;
+}
+
 export async function authFetch(url, options = {}) {
   const method = (options.method || "GET").toUpperCase(); 
   const csrftoken = getCookie("csrftoken");

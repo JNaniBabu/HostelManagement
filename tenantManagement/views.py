@@ -1166,6 +1166,22 @@ def tenants_list(request):
 
 
 
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_tenant(request, tenant_id):
+    hostel = getattr(request.user, "hostel", None)
+    if not hostel:
+        return Response({"error": "Hostel not found"}, status=404)
+
+    try:
+        tenant = Tenant.objects.get(id=tenant_id, hostel=hostel)
+    except Tenant.DoesNotExist:
+        return Response({"error": "Tenant not found"}, status=404)
+
+    tenant.delete()
+    return Response({"success": "Tenant deleted"}, status=200)
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def complaints_list(request):

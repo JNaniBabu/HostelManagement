@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import Loader from "../Loader";
-import { authFetch, getCookie } from "../utils/authFetch";
+import { authFetch } from "../utils/authFetch";
 
 function TotalTenants() {
   const [tenants, setTenants] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deletingTenantId, setDeletingTenantId] = useState(null);
   const [error, setError] = useState("");
 
   async function fetchTenants() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("https://hostelmanagement-8jtu.onrender.com/tenants/", {
+      const res = await authFetch("/tenants/", {
         method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -31,6 +27,32 @@ function TotalTenants() {
       setTenants([]);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function deleteTenant(tenantId) {
+    if (!window.confirm("Delete this tenant permanently?")) {
+      return;
+    }
+
+    setDeletingTenantId(tenantId);
+    setError("");
+
+    try {
+      const response = await authFetch(`/tenant/${tenantId}/`, {
+        method: "DELETE",
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setError(data.error || data.message || "Unable to delete tenant");
+      } else {
+        setTenants((current) => current.filter((tenant) => tenant.id !== tenantId));
+      }
+    } catch {
+      setError("Server error");
+    } finally {
+      setDeletingTenantId(null);
     }
   }
 
@@ -92,6 +114,16 @@ function TotalTenants() {
                       <span className="pendingValue">{t.aadhaar_number}</span>
                     </div>
                   )}
+                </div>
+                <div className="tenantActions">
+                  <button
+                    type="button"
+                    className="deleteTenantButton"
+                    onClick={() => deleteTenant(t.id)}
+                    disabled={deletingTenantId === t.id}
+                  >
+                    {deletingTenantId === t.id ? "Deleting..." : "Delete"}
+                  </button>
                 </div>
               </div>
             );

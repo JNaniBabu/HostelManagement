@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Messenger from "./messenger";
 import { authFetch, getCookie } from "../utils/authFetch";
+import { buildApiUrl } from "../utils/apiConfig";
 
 function AddRooms() {
 
@@ -57,7 +58,7 @@ function AddRooms() {
     setSave("Adding...");
 
     try {
-      const Response = await authFetch("http://localhost:8000/add/room/", {
+      const Response = await authFetch(buildApiUrl("add/room/"), {
         method: "POST",
         credentials: "include",
         headers: {

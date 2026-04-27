@@ -31,6 +31,10 @@ function TotalTenants() {
   }
 
   async function deleteTenant(tenantId) {
+    if (!window.confirm("Delete this tenant permanently?")) {
+      return;
+    }
+
     setDeletingTenantId(tenantId);
     setError("");
 
@@ -41,12 +45,15 @@ function TotalTenants() {
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        setError(data.error || data.message || "Unable to delete tenant");
+        const errorMessage = data.error || data.message || response.statusText || "Unable to delete tenant";
+        console.error("Tenant delete failed", response.status, errorMessage, data);
+        setError(`Delete failed (${response.status}): ${errorMessage}`);
       } else {
         setTenants((current) => current.filter((tenant) => tenant.id !== tenantId));
       }
-    } catch {
-      setError("Server error");
+    } catch (error) {
+      console.error("Tenant delete error", error);
+      setError("Server error while deleting tenant");
     } finally {
       setDeletingTenantId(null);
     }

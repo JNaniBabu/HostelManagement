@@ -31,10 +31,6 @@ function TotalTenants() {
   }
 
   async function deleteTenant(tenantId) {
-    if (!window.confirm("Delete this tenant permanently?")) {
-      return;
-    }
-
     setDeletingTenantId(tenantId);
     setError("");
 

@@ -2778,8 +2778,10 @@ select:-webkit-autofill {
 }
 
 .deleteTenantButton{
-      padding: 15px;
+      padding:5px  15px;
       border-radius: 10px;
       background-color: #ef4444;
+      border: 1px solid transparent;
+      outline: none;
       color: #fff;
 }

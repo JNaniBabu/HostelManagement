@@ -11,7 +11,7 @@ function Pending() {
     setLoading(true);
     setError("");
     try {
-      const res = await authFetch("https://hostelmanagement-8jtu.onrender.com/pending-verifications/", {
+      const res = await fetch("https://hostelmanagement-8jtu.onrender.com/pending-verifications/", {
         method: "GET",
         credentials: "include",
         headers: {

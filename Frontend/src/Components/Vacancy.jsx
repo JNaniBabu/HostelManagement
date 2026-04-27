@@ -6,15 +6,15 @@ import { authFetch, getCookie } from "../utils/authFetch";
 function Vacancy() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  
   async function fetchVacancyRooms() {
     try {
-      const response = await authFetch("https://hostelmanagement-8jtu.onrender.com/vacancyrooms/", {
+      const response = await fetch("https://hostelmanagement-8jtu.onrender.com/vacancyrooms/", {
         method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          xsrfToken: getCookie("csrftoken"),
+          "X-CSRFToken": getCookie("csrftoken"),
         },
       });
 

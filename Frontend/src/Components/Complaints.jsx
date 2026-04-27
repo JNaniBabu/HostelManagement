@@ -11,7 +11,7 @@ function Complaints() {
     setLoading(true);
     setError("");
     try {
-      const res = await authFetch("https://hostelmanagement-8jtu.onrender.com/complaints/", {
+      const res = await fetch("https://hostelmanagement-8jtu.onrender.com/complaints/", {
         method: "GET",
         credentials: "include",
         headers: {

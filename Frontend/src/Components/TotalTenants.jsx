@@ -40,6 +40,8 @@ function TotalTenants() {
         method: "DELETE",
       });
       const data = await response.json().catch(() => ({}));
+      console.log(tenantId);
+      
 
       if (!response.ok) {
         const errorMessage = data.error || data.message || response.statusText || "Unable to delete tenant";

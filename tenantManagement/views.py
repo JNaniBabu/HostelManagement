@@ -1165,18 +1165,24 @@ def tenants_list(request):
     return Response({"tenants": tenants}, status=200)
 
 
-
 @api_view(["DELETE"])
 @permission_classes([IsAuthenticated])
 def delete_tenant(request, tenant_id):
     hostel = getattr(request.user, "hostel", None)
-    if not hostel:
-        return Response({"error": "Hostel not found"}, status=404)
 
-    try:
-        tenant = Tenant.objects.get(id=tenant_id, hostel=hostel)
-    except Tenant.DoesNotExist:
-        return Response({"error": "Tenant not found"}, status=404)
+    print("User:", request.user)
+    print("User hostel:", hostel)
+    print("Tenant ID:", tenant_id)
+
+    tenant = Tenant.objects.filter(id=tenant_id).first()
+
+    if not tenant:
+        return Response({"error": "Tenant not found in DB"}, status=404)
+
+    print("Tenant hostel:", tenant.hostel)
+
+    if tenant.hostel != hostel:
+        return Response({"error": "Tenant not in your hostel"}, status=403)
 
     tenant.delete()
     return Response({"success": "Tenant deleted"}, status=200)

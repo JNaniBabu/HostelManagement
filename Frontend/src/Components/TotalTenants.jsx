@@ -11,7 +11,7 @@ function TotalTenants() {
     setLoading(true);
     setError("");
     try {
-      const res = await authFetch("http://localhost:8000/tenants/", {
+      const res = await authFetch("https://hostelmanagement-8jtu.onrender.com/tenants/", {
         method: "GET",
         credentials: "include",
         headers: {

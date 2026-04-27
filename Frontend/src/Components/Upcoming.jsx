@@ -11,7 +11,7 @@ function Upcoming() {
     setLoading(true);
     setError("");
     try {
-      const res = await authFetch("http://localhost:8000/upcoming-fees/", {
+      const res = await authFetch("https://hostelmanagement-8jtu.onrender.com/upcoming-fees/", {
         method: "GET",
         credentials: "include",
         headers: {

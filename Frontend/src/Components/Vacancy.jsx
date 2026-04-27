@@ -9,7 +9,7 @@ function Vacancy() {
 
   async function fetchVacancyRooms() {
     try {
-      const response = await authFetch("http://localhost:8000/vacancyrooms/", {
+      const response = await authFetch("https://hostelmanagement-8jtu.onrender.com/vacancyrooms/", {
         method: "GET",
         credentials: "include",
         headers: {

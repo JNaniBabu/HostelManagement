@@ -65,7 +65,7 @@ function NewJoinee() {
     }
 
     try {
-      const response = await authFetch("http://localhost:8000/add-tenant/", {
+      const response = await authFetch("https://hostelmanagement-8jtu.onrender.com/add-tenant/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

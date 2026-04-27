@@ -2,7 +2,7 @@ from django.conf import settings
 
 try:
     from twilio.rest import Client
-except ImportError:  # pragma: no cover - local fallback when Twilio is not installed
+except ImportError:  
     Client = None
 
 
@@ -33,7 +33,7 @@ def _is_whatsapp_send_success(status, error_code):
 
 
 def send_whatsapp_message(to_number, message):
-    # Ensure Twilio WhatsApp config exists
+
     account_sid = str(getattr(settings, "TWILIO_ACCOUNT_SID", "") or "").strip()
     auth_token = str(getattr(settings, "TWILIO_AUTH_TOKEN", "") or "").strip()
     whatsapp_from_raw = str(getattr(settings, "TWILIO_WHATSAPP_NUMBER", "") or "").strip()
@@ -84,7 +84,7 @@ def send_whatsapp_message(to_number, message):
         to_value = getattr(msg, "to", normalize_whatsapp_number(to_number))
         from_value = getattr(msg, "from_", settings.TWILIO_WHATSAPP_NUMBER)
 
-        # Best-effort fetch for freshest status; never fail the send result because of this.
+        
         try:
             fetched = client.messages(msg.sid).fetch()
             status = getattr(fetched, "status", status)

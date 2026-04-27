@@ -24,7 +24,7 @@ def raise_verification_error(message, status_code=400, extra=None):
 
 def build_verification_link(token):
     frontend_url = str(
-        getattr(settings, "FRONTEND_URL", "http://localhost:5173") or ""
+        getattr(settings, "FRONTEND_URL", "https://hostel-management-two-iota.vercel.app/") or ""
     ).rstrip("/")
     verification_path = str(
         getattr(settings, "TENANT_VERIFICATION_FRONTEND_PATH", "/tenant/verify")

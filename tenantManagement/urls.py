@@ -46,7 +46,7 @@ urlpatterns=[
     path("tenant/login/", tenant_login),
     path("tenant/token/refresh/", tenant_refresh_access_token),
     path("tenant/logout/", tenant_logout),
-    path("tenant/<int:tenant_id>/", delete_tenant),
+    path("tenants/<int:tenant_id>/", delete_tenant),
     path("tenant/<str:phone>/room/", tenant_room_details),
     path("tenant/<str:phone>/menu/", tenant_menu),
     path("tenant/<str:phone>/complaints/", tenant_complaints),

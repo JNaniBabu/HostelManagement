@@ -31,15 +31,12 @@ function TotalTenants() {
   }
 
   async function deleteTenant(tenantId) {
-    if (!window.confirm("Delete this tenant permanently?")) {
-      return;
-    }
 
     setDeletingTenantId(tenantId);
     setError("");
 
     try {
-      const response = await authFetch(`/tenant/${tenantId}/`, {
+      const response = await authFetch(`/tenants/${tenantId}/`, {
         method: "DELETE",
       });
       const data = await response.json().catch(() => ({}));

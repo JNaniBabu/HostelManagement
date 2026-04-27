@@ -2776,3 +2776,10 @@ select:-webkit-autofill {
   box-shadow: 0 0 0px 1000px var(--bg-soft) inset !important;
   -webkit-text-fill-color: var(--text-light) !important;
 }
+
+.deleteTenantButton{
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #ef4444;
+      color: #fff;
+}

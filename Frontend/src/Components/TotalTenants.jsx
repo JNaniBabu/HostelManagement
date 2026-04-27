@@ -101,6 +101,14 @@ function TotalTenants() {
                     </p>
                   </div>
                   <span className={`pendingStatus ${t.status}`}>{t.status}</span>
+                   <button
+                    type="button"
+                    className="deleteTenantButton"
+                    onClick={() => deleteTenant(t.id)}
+                    disabled={deletingTenantId === t.id}
+                  >
+                    {deletingTenantId === t.id ? "Deleting..." : "Delete"}
+                  </button>
                 </div>
 
                 <div className="tenantMeta">
@@ -115,16 +123,7 @@ function TotalTenants() {
                     </div>
                   )}
                 </div>
-                <div className="tenantActions">
-                  <button
-                    type="button"
-                    className="deleteTenantButton"
-                    onClick={() => deleteTenant(t.id)}
-                    disabled={deletingTenantId === t.id}
-                  >
-                    {deletingTenantId === t.id ? "Deleting..." : "Delete"}
-                  </button>
-                </div>
+                
               </div>
             );
           })}
